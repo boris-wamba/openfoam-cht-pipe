@@ -11,15 +11,14 @@ Target: OpenFOAM v2512 (ESI / openfoam.com). Case generation and analysis: Pytho
   <img src="docs/figures/geometry_3d.png" width="900" alt="3D cut-away view of the simulated pipe: water region, steel wall, unheated entry, heated length, and the 5 degree simulated sector">
 </p>
 
-*Simulated problem: a water pipe (D = 20 mm) with a 2 mm steel wall, heated on the outer surface over its last 45 D. Only a
+*Simulated problem: a water pipe D = 20 mm with a 2 mm steel wall, heated on the outer surface over its last 45 D. Only a
 5 degree sector, one cell thick, is meshed (axisymmetric wedge). The drawing exaggerates the radial dimensions.*
 
 <p align="center">
   <img src="docs/figures/fields_schematic.png" width="900" alt="Schematic of the temperature field, the velocity field, the near-wall mesh and a radial temperature profile">
 </p>
 
-*Typical fields schematic, coarse mesh, Re = 25 000. The temperature and velocity maps are drawn from the computed wall
-temperature*
+*Typical fields schematic, coarse mesh, Re = 25 000.*
 
 ## Status
 
