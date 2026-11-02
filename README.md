@@ -18,8 +18,8 @@ Target: OpenFOAM v2512 (ESI / openfoam.com). Case generation and analysis: Pytho
   <img src="docs/figures/fields_schematic.png" width="900" alt="Schematic of the temperature field, the velocity field, the near-wall mesh and a radial temperature profile">
 </p>
 
-*Typical fields (schematic, coarse mesh, Re = 25 000). The temperature and velocity maps are drawn from the computed wall
-temperature, the computed radial profile shape and standard turbulent profiles; they are not renderings of the solution fields.*
+*Typical fields schematic, coarse mesh, Re = 25 000. The temperature and velocity maps are drawn from the computed wall
+temperature*
 
 ## Status
 
