@@ -1,0 +1,14 @@
+// Mass-flow weighted bulk temperature at the outlet, for all written times except 0.
+// Run:  postProcess -noZero -region fluid -func outletTb   (phi does not exist at time 0)
+type            surfaceFieldValue;
+libs            ("libfieldFunctionObjects.so");
+executeControl  writeTime;
+writeControl    writeTime;
+writeFields     false;
+log             true;
+
+regionType      patch;
+name            outlet;
+operation       weightedAverage;
+weightField     phi;
+fields          (T phi);   // phi must be listed so that it is read and can be used as weight

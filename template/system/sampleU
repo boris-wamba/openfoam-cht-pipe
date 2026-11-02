@@ -1,0 +1,14 @@
+// Radial profile of the axial velocity at one station (law of the wall check).
+// Run:  postProcess -region fluid -latestTime -func sampleU
+type            sets;
+libs            ("libsampling.so");
+executeControl  writeTime;
+writeControl    writeTime;
+interpolationScheme cellPoint;
+setFormat       raw;
+fields          (U);
+
+sets
+(
+@@U_SET@@
+);

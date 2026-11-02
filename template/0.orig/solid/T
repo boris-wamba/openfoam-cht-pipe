@@ -1,0 +1,42 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      T;
+}
+
+dimensions      [0 0 0 1 0 0 0];
+
+internalField   uniform @@T_IN@@;
+
+boundaryField
+{
+    ".*_to_.*"
+    {
+        type            compressible::turbulentTemperatureCoupledBaffleMixed;
+        Tnbr            T;
+        kappaMethod     solidThermo;
+        value           uniform @@T_IN@@;
+    }
+    outer_unheated
+    {
+        type            zeroGradient;
+    }
+    outer_heated
+    {
+        // Imposed heat flux q_outer [W/m2] entering the solid.
+        // snGrad is taken along the outward normal: the boundary is hotter than the
+        // cell next to it when heat enters, so dT/dn = +q_outer / kappa_solid.
+        type            fixedGradient;
+        gradient        uniform @@GRAD_OUTER@@;
+    }
+    "(solid_inlet|solid_outlet)"
+    {
+        type            zeroGradient;
+    }
+    "(front|back)"
+    {
+        type            wedge;
+    }
+}

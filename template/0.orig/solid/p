@@ -1,0 +1,24 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      p;
+}
+
+dimensions      [1 -1 -2 0 0 0 0];
+
+internalField   uniform 1e5;
+
+boundaryField
+{
+    "(outer_unheated|outer_heated|solid_inlet|solid_outlet|.*_to_.*)"
+    {
+        type            calculated;
+        value           uniform 1e5;
+    }
+    "(front|back)"
+    {
+        type            wedge;
+    }
+}

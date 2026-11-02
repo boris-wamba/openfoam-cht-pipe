@@ -1,0 +1,14 @@
+// Radial temperature profiles in the mid-plane of the wedge, at several stations.
+// Run:  postProcess -region fluid -latestTime -func sampleProfiles
+type            sets;
+libs            ("libsampling.so");
+executeControl  writeTime;
+writeControl    writeTime;
+interpolationScheme cellPoint;
+setFormat       raw;
+fields          (T);
+
+sets
+(
+@@PROFILE_SETS@@
+);

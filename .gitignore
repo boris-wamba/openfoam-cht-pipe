@@ -1,0 +1,15 @@
+# generated cases and results
+runs/
+results/
+processor*/
+postProcessing/
+*.foam
+log.*
+# python
+__pycache__/
+*.egg-info/
+.pytest_cache/
+*.log
+nohup.out
+.venv/
+*.tar.gz

@@ -1,0 +1,41 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      thermophysicalProperties;
+}
+
+// Water, constant properties (about 25 degC). Pr = Cp*mu/kappa.
+thermoType
+{
+    type            heRhoThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          hConst;
+    equationOfState rhoConst;
+    specie          specie;
+    energy          sensibleEnthalpy;
+}
+
+mixture
+{
+    specie
+    {
+        molWeight   18.015;
+    }
+    equationOfState
+    {
+        rho         @@RHO_F@@;
+    }
+    thermodynamics
+    {
+        Cp          @@CP_F@@;
+        Hf          0;
+    }
+    transport
+    {
+        mu          @@MU_F@@;
+        Pr          @@PR_F@@;
+    }
+}

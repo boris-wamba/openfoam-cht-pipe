@@ -1,0 +1,19 @@
+// Temperature on the fluid side of the fluid/solid interface (face values).
+// Run:  postProcess -region fluid -latestTime -func sampleWall
+type            surfaces;
+libs            ("libsampling.so");
+executeControl  writeTime;
+writeControl    writeTime;
+interpolationScheme none;
+surfaceFormat   raw;
+fields          (T);
+
+surfaces
+(
+    wall
+    {
+        type        patch;
+        patches     (".*_to_.*");
+        interpolate false;
+    }
+);

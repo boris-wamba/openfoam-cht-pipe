@@ -1,0 +1,40 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      thermophysicalProperties;
+}
+
+// Solid wall, constant properties: @@WALL_NAME@@
+thermoType
+{
+    type            heSolidThermo;
+    mixture         pureMixture;
+    transport       constIso;
+    thermo          hConst;
+    equationOfState rhoConst;
+    specie          specie;
+    energy          sensibleEnthalpy;
+}
+
+mixture
+{
+    specie
+    {
+        molWeight   50;
+    }
+    transport
+    {
+        kappa       @@KAPPA_S@@;
+    }
+    thermodynamics
+    {
+        Hf          0;
+        Cp          @@CP_S@@;
+    }
+    equationOfState
+    {
+        rho         @@RHO_S@@;
+    }
+}

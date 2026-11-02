@@ -1,0 +1,41 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      omega;
+}
+
+dimensions      [0 0 -1 0 0 0 0];
+
+internalField   uniform @@OMEGA_IN@@;
+
+boundaryField
+{
+    inlet
+    {
+        type            turbulentMixingLengthFrequencyInlet;
+        mixingLength    @@L_MIX@@;
+        k               k;
+        value           uniform @@OMEGA_IN@@;
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform @@OMEGA_IN@@;
+        value           uniform @@OMEGA_IN@@;
+    }
+    ".*_to_.*"
+    {
+        type            omegaWallFunction;
+        value           uniform @@OMEGA_IN@@;
+    }
+    axis
+    {
+        type            empty;
+    }
+    "(front|back)"
+    {
+        type            wedge;
+    }
+}

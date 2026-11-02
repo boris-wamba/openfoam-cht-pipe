@@ -1,0 +1,14 @@
+// Pressure and temperature along a line at half radius (pressure gradient -> friction factor).
+// Run:  postProcess -region fluid -latestTime -func sampleLine
+type            sets;
+libs            ("libsampling.so");
+executeControl  writeTime;
+writeControl    writeTime;
+interpolationScheme cellPoint;
+setFormat       raw;
+fields          (p);
+
+sets
+(
+@@LINE_SET@@
+);

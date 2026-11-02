@@ -1,0 +1,30 @@
+#!/bin/sh
+cd "${0%/*}" || exit                        # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions
+
+NP=$(sed -n 's/^numberOfSubdomains[[:space:]]*\([0-9]*\);.*/\1/p' system/decomposeParDict)
+
+runApplication blockMesh
+runApplication splitMeshRegions -cellZones -overwrite
+runApplication checkMesh -allRegions
+
+rm -rf 0
+cp -r 0.orig 0
+
+if [ "${NP:-1}" -gt 1 ]
+then
+    runApplication decomposePar -allRegions
+    if [ -n "$MPI_EXTRA_OPTS" ]
+    then
+        # e.g. MPI_EXTRA_OPTS="--oversubscribe" when asking for more processes than physical cores
+        mpirun -np "$NP" $MPI_EXTRA_OPTS chtMultiRegionFoam -parallel > log.chtMultiRegionFoam 2>&1
+    else
+        runParallel chtMultiRegionFoam
+    fi
+    runApplication reconstructPar -allRegions
+else
+    runApplication chtMultiRegionFoam
+fi
+
+touch case.foam
+#------------------------------------------------------------------------------
